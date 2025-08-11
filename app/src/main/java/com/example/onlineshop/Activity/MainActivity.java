@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
             binding.bottomNavigation.setItemSelected(R.id.profile, true);
         });
 
+        binding.logoutBtn.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
+
         binding.adminBtn.setOnClickListener(v -> {
             replaceFragment(new AdminDashboardFragment(), true);
         });
